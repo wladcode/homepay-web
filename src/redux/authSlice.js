@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 };
 
 export const signInWithEmailPassword = createAsyncThunk(
-  "auth/fetchProducts",
+  "auth/signInWithEmailPassword",
   async ({email, password}, { dispatch }) => {
     dispatch(setLoaderActive(true));
 

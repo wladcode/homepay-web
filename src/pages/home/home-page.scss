@@ -12,7 +12,6 @@ $border-secondary-radius: 16px;
 
     .sign-in-and-sign-up {
         display: flex;
-        width: 100%;
         flex-direction: column;
         border: $border-style;
         border-radius: $border-primary-radius;
@@ -20,7 +19,6 @@ $border-secondary-radius: 16px;
         background-color: $panel-primary-background-color;
 
         .login-logup {
-            width: 100%;
             border: none;
             //border-right:solid 1px red;
             border-bottom-left-radius: $border-primary-radius;

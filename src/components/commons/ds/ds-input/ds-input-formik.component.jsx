@@ -1,11 +1,13 @@
-import { Grid, TextField } from "@mui/material";
+import {  TextField } from "@mui/material";
 import { func, shape, string } from "prop-types";
 import React from "react";
 import "./ds-input.scss";
 
+import  Grid from "@mui/material/Grid2";
+
 const DSFormInputFormikComponent = ({ label, field, form: { touched, errors }, ...otherProps }) => {
     return (
-        <Grid item xs={12} sm={12}>
+        <Grid size={{ xs: 2, sm: 4, md: 4 }}>
             <TextField
                 {...field}
                 label={label}

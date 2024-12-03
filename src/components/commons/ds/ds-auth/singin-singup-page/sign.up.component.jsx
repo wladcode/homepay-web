@@ -1,86 +1,82 @@
-import { Grid } from "@mui/material";
-import React, { Component } from "react";
+import React from "react";
+import DSButtonComponent from "../../ds-button/ds-button.component";
 import DSFormInputComponent from "../../ds-input/ds-input.component";
-import DSButtonComponent from '../../ds-button/ds-button.component';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 
-class SignUpComponent extends Component {
-    constructor(props) {
-        super(props);
+const SignUpComponent = () => {
+  console.log("POR ACA");
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      fullname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Email sin formato correcto")
+        .required("Campo requerido"),
+      password: Yup.string()
+        .min(4, "Password must be at least 6 characters")
+        .required("Campo requerido"),
+    }),
+    onSubmit: (values) => {
+      console.log("values", values);
+      /*dispatch(
+        signInWithEmailPassword({
+          email: values.email,
+          password: values.password,
+          history,
+        })
+      );*/
+    },
+  });
 
-        this.state = {
-            fullname: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-        };
-    }
+  return (
+    <div className="sign-in-up-page">
+      <div className="title">
+        <h2>No tengo una cuenta</h2>
+        <span>Registrate con tu email y clave</span>
+      </div>
 
-    handleSubmit = async (event) => {
-        event.preventDefault();
-        const { password, confirmPassword } = this.state;
-        if (password !== confirmPassword) {
-            alert("El password no coincide");
-            return;
-        }
-    };
+      <form className="content" onSubmit={formik.handleSubmit}>
+        <DSFormInputComponent
+          name="fullname"
+          value={formik.values.fullname}
+          label="Nombre"
+          required
+          autoFocus
+        />
+        <DSFormInputComponent
+          name="email"
+          value={formik.values.email}
+          required
+          label="Email"
+        />
 
-    handleChange = (event) => {
-        const { name, value } = event.target;
+        <DSFormInputComponent
+          name="password"
+          value={formik.values.password}
+          required
+          label="Password"
+        />
 
-        this.setState({ [name]: value });
-    };
+        <DSFormInputComponent
+          name="confirmPassword"
+          value={formik.values.confirmPassword}
+          required
+          label="Confirme la password"
+        />
 
-    render() {
-        const { fullname, email, password, confirmPassword } = this.state;
-        return (
-            <div className="sign-in-up-page">
-                <div className="title">
-                    <h2>No tengo una cuenta</h2>
-                    <span>Registrate con tu email y clave</span>
-                </div>
-
-                <form className="content" onSubmit={this.handleSubmit}>
-                    <Grid container spacing={2}>
-                        <DSFormInputComponent
-                            name="fullname"
-                            value={fullname}
-                            label="Nombre"
-                            required
-                            handleChange={this.handleChange}
-                            autoFocus
-                        />
-                        <DSFormInputComponent
-                            name="email"
-                            value={email}
-                            required
-                            handleChange={this.handleChange}
-                            label="Email"
-                        />
-
-                        <DSFormInputComponent
-                            name="password"
-                            value={password}
-                            required
-                            handleChange={this.handleChange}
-                            label="Password"
-                        />
-
-                        <DSFormInputComponent
-                            name="confirmPassword"
-                            value={confirmPassword}
-                            required
-                            handleChange={this.handleChange}
-                            label="Confirme la password"
-                        />
-                    </Grid>
-
-                    <div className="buttons">
-                        <DSButtonComponent type="submit">Registrarse</DSButtonComponent>
-                    </div>
-                </form>
-            </div>
-        );
-    }
-}
+        <div className="buttons">
+          <DSButtonComponent type="submit">Registrarse</DSButtonComponent>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default SignUpComponent;

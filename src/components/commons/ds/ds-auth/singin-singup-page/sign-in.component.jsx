@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Grid } from "@mui/material";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //import { actions as authActions } from "../../../../../redux/auth/auth-reducer";
 
 import DSButtonComponent from "../../ds-button/ds-button.component";
 import DSFormInputComponent from "../../ds-input/ds-input.component";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { signInWithEmailPassword } from "../../../../../redux/authSlice";
 
-const SignInComponent = ({}) => {
+const SignInComponent = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
+
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/dc");
+    }
+  }, [navigate, currentUser]);
 
   const formik = useFormik({
     initialValues: {
@@ -35,15 +42,11 @@ const SignInComponent = ({}) => {
         signInWithEmailPassword({
           email: values.email,
           password: values.password,
-          history,
+          navigate,
         })
       );
     },
   });
-
-  const googleFailure = (error) => {
-    console.log("GOOGLE: error", error);
-  };
 
   return (
     <div className="sign-in-up-page">
@@ -53,28 +56,26 @@ const SignInComponent = ({}) => {
       </div>
 
       <form className="content" onSubmit={formik.handleSubmit}>
-        <Grid container spacing={2}>
-          <DSFormInputComponent
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-            label="Email"
-            autoFocus
-          />
+        <DSFormInputComponent
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+          label="Email"
+          autoFocus
+        />
 
-          <DSFormInputComponent
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-            label="Password"
-          />
-        </Grid>
+        <DSFormInputComponent
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          label="Password"
+        />
 
         <div className="buttons">
           <DSButtonComponent type="submit">Ingresar</DSButtonComponent>
