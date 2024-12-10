@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 
 console.log("is heare")
 export const ContainerApp = styled(Container)`
-    text-align: center;
     height: 100vh;
 
     /* grid container settings */

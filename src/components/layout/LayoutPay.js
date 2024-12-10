@@ -52,7 +52,7 @@ const LayoutPay = () => {
           <main>
             <Outlet />
           </main>
-          && <FooterPay />
+          <FooterPay />
         </ContainerApp>
       </>
     );

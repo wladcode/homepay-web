@@ -4,35 +4,48 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 
 function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © Diamoncode " + new Date().getFullYear()}
-            <br />
-            <Link color="inherit" href="http://www.diamoncode.com.ec">
-                http://www.diamoncode.com.ec
-            </Link>
-        </Typography>
-    );
+  return (
+    <>
+      <Typography
+        variant="body2"
+        component="div"
+        color="textSecondary"
+        align="center"
+      >
+        {"Copyright © WladeCode " + new Date().getFullYear()}
+      </Typography>
+      <Typography
+        variant="body2"
+        component="div"
+        color="textSecondary"
+        align="center"
+      >
+        <Link
+          color="inherit"
+          href="https://wladecode.netlify.app/"
+          target="_blank"
+        >
+          https://wladecode.netlify.app/
+        </Link>
+      </Typography>
+    </>
+  );
 }
 
 function FooterPay() {
-    return (
-        <footer>
-            <Box
-                sx={{
-                    py: 2,
-                    px: 1,
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === "dark" ? theme.palette.grey[200] : theme.palette.grey[800],
-                }}
-                >
-
-
-                    
-                <Copyright />
-            </Box>
-        </footer>
-    );
+  return (
+    <footer>
+      <Box
+        sx={{
+          py: 1,
+          px: 1,
+          
+        }}
+      >
+        <Copyright />
+      </Box>
+    </footer>
+  );
 }
 
 export default FooterPay;

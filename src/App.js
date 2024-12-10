@@ -11,35 +11,56 @@ import BurgerBox from "./components/BurgerBox";
 import HooksPizzaBox from "./components/PizzaBox";
 import ProductView from "./components/ProductView";
 import LayoutPublic from "./components/layout/LayoutPublic";
-import AuthenticatedRouted from "./features/auth/AuthenticatedRouted";
 import LayoutPay from "./components/layout/LayoutPay";
 import Dashboard from "./pages/Dashboard";
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { blue } from "@mui/material/colors";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#757ce8',
+        main: '#3f50b5',
+        dark: '#002884',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  });
+
   return (
     <Provider store={store}>
-      <DSLoader />
-      <DSMessage />
+      <ThemeProvider theme={theme}>
+        <DSLoader />
+        <DSMessage />
 
-      <BrowserRouter>
-        <Routes>
-          <Route element={<LayoutPublic />}>
-            <Route index element={<Home />} />
-          </Route>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<LayoutPublic />}>
+              <Route index element={<Home />} />
+            </Route>
 
-          <Route path="/dc" element={<LayoutPay />}>
-            <Route index component={<Dashboard />} />
-            <Route path={`houses`} component={<Dashboard />} />
-            <Route path={`departments`} component={<Dashboard />} />
-            <Route path={`departments/details`} component={<Dashboard />} />
-          </Route>
+            <Route path="/dc" element={<LayoutPay />}>
+              <Route index component={<Dashboard />} />
+              <Route path={`houses`} component={<Dashboard />} />
+              <Route path={`departments`} component={<Dashboard />} />
+              <Route path={`departments/details`} component={<Dashboard />} />
+            </Route>
 
-          <Route path="/customer" element={<CustomerChoose />} />
-          <Route path="/pizza" element={<HooksPizzaBox />} />
-          <Route path="/burger" element={<BurgerBox />} />
-          <Route path="/product" element={<ProductView />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/customer" element={<CustomerChoose />} />
+            <Route path="/pizza" element={<HooksPizzaBox />} />
+            <Route path="/burger" element={<BurgerBox />} />
+            <Route path="/product" element={<ProductView />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 }

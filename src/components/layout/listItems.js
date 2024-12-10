@@ -19,24 +19,21 @@ export default function MainListItems() {
         <div>
             <ListItem button onClick={() => navigate("/dc")}>
                 <ListItemIcon>
-                    <DashboardIcon />
-
-
-                    
+                    <DashboardIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItem>
 
             <ListItem button onClick={() => navigate("/orders")}>
                 <ListItemIcon>
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon color="primary"  />
                 </ListItemIcon>
                 <ListItemText primary="Orders" />
             </ListItem>
 
             <ListItem button to onClick={() => navigate("/dc/houses")}>
                 <ListItemIcon>
-                    <HouseIcon />
+                    <HouseIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Mis casas" />
             </ListItem>

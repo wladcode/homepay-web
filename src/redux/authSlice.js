@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 
 export const signInWithEmailPassword = createAsyncThunk(
   "auth/signInWithEmailPassword",
-  async ({email, password}, { dispatch }) => {
+  async ({ email, password }, { dispatch }) => {
     dispatch(setLoaderActive(true));
 
     console.log("email", email);
@@ -50,9 +50,13 @@ const authSlice = createSlice({
       state.currentUser = action.payload.currentUser;
       state.token = action.payload.token;
     },
+    closeSession: (state) => {
+      state.currentUser = null;
+      state.token = null;
+    },
   },
 });
 
-const { finalLoginWithUserAndPassword } = authSlice.actions;
+export const { finalLoginWithUserAndPassword, closeSession } = authSlice.actions;
 
 export default authSlice.reducer;
