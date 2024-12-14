@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard";
 import { ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { blue } from "@mui/material/colors";
+import { SpentList } from "./pages/spent/SpentList";
 
 function App() {
   const theme = createTheme({
@@ -47,11 +48,12 @@ function App() {
               <Route index element={<Home />} />
             </Route>
 
-            <Route path="/dc" element={<LayoutPay />}>
-              <Route index component={<Dashboard />} />
-              <Route path={`houses`} component={<Dashboard />} />
-              <Route path={`departments`} component={<Dashboard />} />
-              <Route path={`departments/details`} component={<Dashboard />} />
+            <Route path="dc" element={<LayoutPay />}>
+              <Route index element={<Dashboard />} />
+              <Route path="spents" element={<SpentList/>} />
+              <Route path={`houses`} element={<Dashboard />} />
+              <Route path={`departments`} element={<Dashboard />} />
+              <Route path={`departments/details`} element={<Dashboard />} />
             </Route>
 
             <Route path="/customer" element={<CustomerChoose />} />

@@ -4,6 +4,7 @@ import burgerReducer from "./burgerSlice";
 import authReducer from "./authSlice";
 import messageReducer from "./messageSlice";
 import loaderReducer from "./loaderSlice";
+import spentReducer from "./spentSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     burger: burgerReducer,
     auth: authReducer,
     message: messageReducer,
-    loader: loaderReducer
+    loader: loaderReducer,
+    spent: spentReducer,
   },
 });
 

@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     return (
         <Grid container spacing={3}>
-            {/* Chart */}
+             Chart 
             <Grid item xs={12} md={8} lg={9}>
                 <Paper >{/*<Chart />*/}</Paper>
             </Grid>
