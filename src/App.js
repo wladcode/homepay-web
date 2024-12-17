@@ -20,18 +20,20 @@ import { SpentList } from "./pages/spent/SpentList";
 
 function App() {
   const theme = createTheme({
+    colorSchemes: {
+      dark: true,
+    },
     palette: {
+      mode: 'light',
       primary: {
-        light: '#757ce8',
-        main: '#3f50b5',
-        dark: '#002884',
-        contrastText: '#fff',
+        main: '#255bbc',
       },
       secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
+        main: '#8c5e0c',
+      },
+      background: {
+        default: '#969090',
+        paper: '#e0e0e0',
       },
     },
   });

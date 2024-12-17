@@ -1,4 +1,4 @@
-import { Container, Fab } from "@mui/material";
+import { Box, Container, Fab } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { MONTHS } from "../../utils/generalUtils";
 import { Selector } from "../../components/commons/wc/Selector";
@@ -6,6 +6,8 @@ import DSButtonComponent from "../../components/commons/ds/ds-button/ds-button.c
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSpentsList } from "../../redux/spentSlice";
+import SpentItem from "./SpentItem";
+import Grid from "@mui/material/Grid2";
 
 export const SpentList = (props) => {
   const dispatch = useDispatch();
@@ -61,11 +63,21 @@ export const SpentList = (props) => {
         />
 
         <DSButtonComponent onClick={filterData}>Filtrar</DSButtonComponent>
-
-        {spentList.map((item) => (
-          <div>{item.name}</div>
-        ))}
       </div>
+    );
+  };
+
+  const renderListData = () => {
+    return (
+      <Box sx={{ flexGrow: 1, padding: 2 }}>
+        <Grid container spacing={1} justifyContent="center">
+          {spentList.map((item, index) => (
+            <Grid item key={index}>
+              <SpentItem item={item} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     );
   };
 
@@ -74,12 +86,13 @@ export const SpentList = (props) => {
       <Container fixed>
         <h3>SPENTS</h3>
         {renderFilters()}
+        {renderListData()}
 
         <Fab
           style={{
             position: "fixed",
             bottom: 60,
-            right: 60,
+            right: 30,
             textAlign: "center",
           }}
           size="small"

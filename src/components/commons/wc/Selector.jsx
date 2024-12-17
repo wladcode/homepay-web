@@ -20,7 +20,7 @@ export const Selector = ({
   ...other
 }) => {
   return (
-    <FormControl sx={{ m: 1, width: 250 }} size="small">
+    <FormControl sx={{ m: 1, width: 120 }} size="small">
       <InputLabel id={id}>{label}</InputLabel>
       <Select
         labelId={id}

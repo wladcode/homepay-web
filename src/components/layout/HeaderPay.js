@@ -11,8 +11,10 @@ import { closeSession } from "../../redux/authSlice";
 //import useStyles from "./css/HeaderPay-material.css";
 
 import InputBase from "@mui/material/InputBase";
-import { alpha, styled } from "@mui/material/styles";
+import { alpha, styled, useColorScheme } from "@mui/material/styles";
 import { func } from "prop-types";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import NightlightIcon from "@mui/icons-material/Nightlight";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function HeaderPay({ handleDrawerOpen }) {
+  const { mode, setMode } = useColorScheme();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -98,6 +101,37 @@ function HeaderPay({ handleDrawerOpen }) {
     </Menu>
   );
 
+  const renderColorButton = () => {
+    console.log("mode ", mode);
+    if (!mode) {
+      return null;
+    }
+
+    if (mode === "dark") {
+      return (
+        <IconButton
+          aria-label="fingerprint"
+          onClick={() => {
+            setMode("light");
+          }}
+        >
+          <LightModeIcon />
+        </IconButton>
+      );
+    }
+    return (
+      <IconButton
+        aria-label="fingerprint"
+        color="white"
+        onClick={() => {
+          setMode("dark");
+        }}
+      >
+        <NightlightIcon />
+      </IconButton>
+    );
+  };
+
   return (
     <header>
       <AppBar position="static" color="primary">
@@ -119,6 +153,8 @@ function HeaderPay({ handleDrawerOpen }) {
 
           <div>
             {userData.name}
+            {renderColorButton()}
+
             <IconButton
               size="large"
               edge="end"
