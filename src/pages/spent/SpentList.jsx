@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadSpentsList } from "../../redux/spentSlice";
 import SpentItem from "./SpentItem";
 import Grid from "@mui/material/Grid2";
+import CalendarNavBar from "../../components/commons/wc/CalendarNavBar";
 
 export const SpentList = (props) => {
   const dispatch = useDispatch();
@@ -40,31 +41,7 @@ export const SpentList = (props) => {
   };
 
   const renderFilters = () => {
-    return (
-      <div>
-        <Selector
-          id="year"
-          label="Select a year"
-          value={filter.year}
-          handleChange={(e) => {
-            setFilter({ ...filter, year: e.target.value });
-          }}
-          data={years}
-        />
-
-        <Selector
-          id="month"
-          label="Select a month"
-          value={filter.month}
-          handleChange={(e) => {
-            setFilter({ ...filter, month: e.target.value });
-          }}
-          data={MONTHS}
-        />
-
-        <DSButtonComponent onClick={filterData}>Filtrar</DSButtonComponent>
-      </div>
-    );
+    return <CalendarNavBar />;
   };
 
   const renderListData = () => {

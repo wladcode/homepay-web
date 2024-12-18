@@ -1,7 +1,6 @@
 import { Container } from "@mui/material";
 import styled from '@emotion/styled'
 
-console.log("is heare")
 export const ContainerApp = styled(Container)`
     height: 100vh;
 

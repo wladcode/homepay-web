@@ -40,7 +40,7 @@ const LayoutPay = () => {
   if (currentUser) {
     return (
       <>
-        <ContainerApp maxWidth="lg">
+        <ContainerApp maxWidth="lg" sx={{ bgcolor: "background.paper" }}>
           <HeaderPay
             openDrawer={openDrawer}
             handleDrawerOpen={handleDrawerOpen}
